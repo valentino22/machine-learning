@@ -8,6 +8,10 @@ m = length(y); % number of training examples
 J_history = zeros(num_iters, 1);
 
 for iter = 1:num_iters
+
+% hypothesis = X * theta;
+% error = (hypothesis - y);
+
 delta = (((X * theta) - y)' * X)';
 theta = theta - (alpha/m) * delta;
     % ====================== YOUR CODE HERE ======================

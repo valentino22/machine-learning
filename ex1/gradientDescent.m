@@ -20,7 +20,8 @@ for iter = 1:num_iters
 
 
 
-
+% hypothesis = X * theta;
+% error = (hypothesis - y);
 
 theta = theta - ((alpha/m) * (X * theta - y)' * X)';
 
