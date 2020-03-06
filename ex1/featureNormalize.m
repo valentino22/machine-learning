@@ -38,6 +38,14 @@ sigma = std(X);
 
 X_norm = (X - repmat(mu, [size(X,1),1]))./(repmat(sigma, [size(X,1),1]));
 
+% alternative solution
+% indicies = 1:size(X, 2);
+
+% for i = indicies,
+%  XminusMu  = X(:, i) - mu(i);
+%  X_norm(:, i) = XminusMu / sigma(i);
+% end
+
 % ============================================================
 
 end
