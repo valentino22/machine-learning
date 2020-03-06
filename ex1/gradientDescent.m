@@ -17,7 +17,11 @@ for iter = 1:num_iters
     %       of the cost function (computeCost) and gradient here.
     %
 
-
+% This is what we do:
+% Start Loop {
+% theta0 = theta0 - (equation_here);
+% theta1 = theta1 - (equation_here);
+% } End loop
 
 
 % hypothesis = X * theta;
