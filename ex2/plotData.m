@@ -12,10 +12,19 @@ figure; hold on;
 %               examples and 'ko' for the negative examples.
 %
 
-pos = find(y==1)
-neg = find(y==0)
 
+pos = find(y==1); % pos is the row number of true values
+neg = find(y==0); % neg is the row number of false values
+
+
+% X(pos,1) lists all rows in the first column where the y value is positive
+% X(pos,2) lists all rows in the second column where the y value is positive
+% then plot this with + signs
 plot(X(pos,1),X(pos,2), 'k+', 'LineWidth', 2, 'MarkerSize', 7)
+
+% X(neg,1) lists all rows in the first column where the y value is negative
+% X(neg,2) lists all rows in the second column where the y value is negative
+% then plot this with o signs
 plot(X(neg,1),X(neg,2), 'ko', 'MarkerFaceColor', 'y', 'MarkerSize', 7)
 
 

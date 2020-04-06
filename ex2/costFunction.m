@@ -31,7 +31,7 @@ cost_when_label_0 = (1 - y) .* log(1 - hypothesis);
 % Cost function
 J=sum(cost_when_label_1 - cost_when_label_0) / m;
 
-grad = sum((hypothesis - y) .* X) / m
+grad = sum((hypothesis - y) .* X) / m;
 
 % =============================================================
 
