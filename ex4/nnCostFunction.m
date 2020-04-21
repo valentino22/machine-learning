@@ -62,8 +62,9 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+
 % map the y matrix into a 5000 x 10 matrix 
-% where Y's every row is a 10 element array with a 1 at the prediction
+% where Y's every row is a 10 element array with a 1 at the actual solution
 I = eye(num_labels);
 Y = zeros(m, num_labels);
 for i=1:m
@@ -78,12 +79,12 @@ a2 = [ones(m, 1) sigmoid(z2)]; % calculate sigmoid for 2nd layer and add 1 as bi
 z3 = a2*Theta2';      % calculate the weight of every neuron on the output layer 
 hypothesis = sigmoid(z3);
 
-
 % regularization penalty
 regularization = (lambda / (2 * m)) * (sum(sum(Theta1(:, 2:end).^2, 2))+sum(sum(Theta2(:, 2:end).^2, 2)));
 
 % calculate J
 J = sum(sum((-Y).*log(hypothesis) - (1-Y).*log(1-hypothesis), 2)) / m + regularization;
+
 
 
 % Backpropagation
@@ -97,63 +98,12 @@ delta_layer_1 = (delta2' * a1);
 delta_layer_2 = (delta3' * a2);
 
 % calculate regularized gradient
-p1 = (lambda/m)*[zeros(size(Theta1, 1), 1) Theta1(:, 2:end)];
-p2 = (lambda/m)*[zeros(size(Theta2, 1), 1) Theta2(:, 2:end)];
+penalty1 = (lambda/m) * [zeros(size(Theta1, 1), 1) Theta1(:, 2:end)];
+penalty2 = (lambda/m) * [zeros(size(Theta2, 1), 1) Theta2(:, 2:end)];
 
-Theta1_grad = delta_layer_1./m + p1;
-Theta2_grad = delta_layer_2./m + p2;
+Theta1_grad = delta_layer_1./m + penalty1;
+Theta2_grad = delta_layer_2./m + penalty2;
 
-
-
-
-% For the regularization
-
-% Theta without the first parameter, we start from index 2 to leave out the first parameter
-% smaller_theta = theta(2:size(theta));
-
-% Lambda part
-% lambda_part = lambda * sum(smaller_theta.^2) / (2 * m);
-
-% J=sum(cost_when_label_1 .- cost_when_label_0) / m + lambda_part;
-
-
-
-
-
-% theta is a 28 dimensional array now, 
-% the first element of the grad has a slightly different equasion then the rest of the elements
-% grad_temp_for_first_element = sum((hypothesis - y) .* X) / m;
-% grad_temp_for_rest_of_elements = sum((hypothesis - y) .* X) / m + lambda / m * theta';
-
-% select the first element from the grad values calculated with the first equasion
-% first_element = grad_temp_for_first_element(1);
-
-% select the rest of the element from the grad values calculated with the second equasion
-% rest_of_elements = grad_temp_for_rest_of_elements(2:size(grad_temp_for_rest_of_elements,2));
-
-% concatenate the 2 vectors
-% grad = [first_element rest_of_elements];
-
-% =============================================================
-
-% grad = grad(:);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% -------------------------------------------------------------
 
 % =========================================================================
 
