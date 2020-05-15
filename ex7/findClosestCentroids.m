@@ -21,8 +21,19 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
-
+% calculate for each point which is the corresponding centoid and store it in a new column idx
+% idx has the same amount of rows as X since each example needs to have an assigned centroid (which it's closest to)
+for i = 1:size(X, 1)
+  minimum = 1000000000;
+  for k = 1:K
+    diff = X(i, :)'-centroids(k, :)';
+    centroid_distance = diff'*diff;
+    if (centroid_distance < minimum) % if currently checked centroid is closer use that centroid's index
+      idx(i) = k;
+      minimum = centroid_distance;
+    end
+  end
+end
 
 
 

@@ -26,10 +26,18 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
-
-
-
-
+% for each centroid we calculate the average of each point which is assigned to it
+for k = 1:K
+  elements_in_cluster = 0;
+  all_elements = zeros(n, 1);
+  for i = 1:m
+    if ( idx(i) == k )
+      all_elements = all_elements + X(i, :)';
+      elements_in_cluster = elements_in_cluster + 1;
+    end
+  end
+  centroids(k, :) = (all_elements/elements_in_cluster)';
+end
 
 
 
